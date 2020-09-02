@@ -8,7 +8,7 @@
 
 h1{
   text-align: center;
-  color: blue;
+  color: #0197f6;
 }
 
 
@@ -21,7 +21,7 @@ h1{
   transform: translate(-50%);
   width: 650px;
   height: 600px;
-  background: black;
+  background: #37474f;
   border:  1px solid black;
   box-shadow: 3px 3px rgba(0, 0, 0, 0.441);
   padding: 1.5rem;
@@ -38,7 +38,7 @@ h1{
 .reset{
   position: absolute;
   top:65vh;
-  color: blue;
+  color: #0197f6;
   left: 50%;
   width: 5rem;
   border:  1px solid black;
