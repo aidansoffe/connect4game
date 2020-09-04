@@ -1,4 +1,4 @@
-//selectors
+
 
 var tableRow = document.getElementsByTagName('tr');
 var tableCell = document.getElementsByTagName('td');
@@ -8,28 +8,21 @@ const reset = document.querySelector('.reset')
 
 
 
-
-
-
-for (let i = 0; i < tableCell.length; i++) {
-  tableCell[i].addEventListener('click', (e) => {
-    console.log(`${e.target.parentElement.rowIndex}, ${e.target.cellIndex}`)
-  })
+class Players {
+  constructor() {
+  this.player1 = prompt('Player One: Enter your name. You will be red')
+  this.player2 = prompt('Player Two: Enter your name. You will be blue')
+  this.player1Color = '#0197f6'
+  this.player2Color = '#f1433f'
+  }
 }
 
+let players = new Players;
 
-while(!player1) {
-  var player1 = prompt('Player One: Enter your name. You will be red')
-}
-player1Color = '#0197f6';
 
-while(!player2) {
-  var player2 = prompt('Player Two: Enter your name. You will be blue')
-}
-player2Color = '#f1433f';
+let currentPlayer = 1;
+playerTurn.textContent = `${players.player1}'s turn!`
 
-var currentPlayer = 1;
-playerTurn.textContent = `${player1}'s turn!`
 
 
 Array.prototype.forEach.call(tableCell, (cell) => {
@@ -38,40 +31,42 @@ Array.prototype.forEach.call(tableCell, (cell) => {
 });
 
 
+// checking for a winner
 
   function checkForWinner(e) {
-    let column = e.target.cellIndex;
+    let column = e.target.cellIndex; //from left to right 0-6 each columns 
+    console.log('this is index of column', column)
     let row = []
   
-    for(var i = 5; i > -1; i--) {
+    for(var i = 5; i > -1; i--) { // i from up to down
       if(tableRow[i].children[column].style.backgroundColor == 'white') {
         row.push(tableRow[i].children[column]);
         if(currentPlayer === 1) {
-          row[0].style.backgroundColor = player1Color;
+          row[0].style.backgroundColor = players.player1Color;
           if(newCheck.horizontalCheck() ||newCheck.verticalCheck() || newCheck.diagonalCheck1() || newCheck.diagonalCheck2()){
-            playerTurn.textContent = `${player1} Wins!`
-            playerTurn.style.color = player1Color
-            return (alert(`${player1} Wins!`));
+            playerTurn.textContent = `${players.player1} Wins!`
+            playerTurn.style.color = players.player1Color
+            return (alert(`${players.player1} Wins!`));
           } else if(drawCheck()){
             playerTurn.textContent = 'Game is draw!'
             return alert("DRAW")
           }else {
-            playerTurn.textContent = `${player2}'s turn!`;
+            playerTurn.textContent = `${players.player2}'s turn!`;
             return currentPlayer = 2
           }
           
     }else {
-      row[0].style.backgroundColor = player2Color;
-      playerTurn.textContent = `${player1}'s turn!`;
+      row[0].style.backgroundColor = players.player2Color;
+      playerTurn.textContent = `${players.player1}'s turn!`;
       if(newCheck.horizontalCheck() ||newCheck.verticalCheck() || newCheck.diagonalCheck1() || newCheck.diagonalCheck2()){
-        playerTurn.textContent = `${player2} Wins!`
-        playerTurn.style.color = player2Color
-        return (alert(`${player2} Wins!`));
+        playerTurn.textContent = `${players.player2} Wins!`
+        playerTurn.style.color = players.player2Color
+        return (alert(`${players.player2} Wins!`));
       } else if(drawCheck()){
         playerTurn.textContent = 'Game is draw!'
         return alert("DRAW")
       }else {
-        playerTurn.textContent = `${player1}'s turn!`;
+        playerTurn.textContent = `${players.player1}'s turn!`;
         return currentPlayer = 1
       }
     }
@@ -79,10 +74,6 @@ Array.prototype.forEach.call(tableCell, (cell) => {
       }
     }
   }  
-
-
-
-
 
 
 
@@ -162,5 +153,5 @@ reset.addEventListener('click', ()=> {
    return slot.style.backgroundColor = 'white';
   });
    playerTurn.style.color = 'black';
-  return (currentPlayer === 1 ? playerTurn.textContent = `${player1}'s turn` : playerTurn.textContent = `${player2}'s turn!`)
+  return (currentPlayer === 1 ? playerTurn.textContent = `${players.player1}'s turn` : playerTurn.textContent = `${players.player2}'s turn!`)
 })
