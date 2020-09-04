@@ -1,5 +1,3 @@
-
-
 var tableRow = document.getElementsByTagName('tr');
 var tableCell = document.getElementsByTagName('td');
 var tableSlot = document.querySelectorAll('.slot');
@@ -16,7 +14,6 @@ class Players {
   this.player2Color = '#f1433f'
   }
 }
-
 let players = new Players;
 
 
@@ -38,7 +35,7 @@ Array.prototype.forEach.call(tableCell, (cell) => {
     console.log('this is index of column', column)
     let row = []
   
-    for(var i = 5; i > -1; i--) { // i from up to down
+    for(var i = 5; i > -1; i--) { // i from down to up
       if(tableRow[i].children[column].style.backgroundColor == 'white') {
         row.push(tableRow[i].children[column]);
         if(currentPlayer === 1) {
